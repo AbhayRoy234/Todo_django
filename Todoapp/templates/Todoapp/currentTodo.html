@@ -1,4 +1,30 @@
-{% extends 'Todoapp/base.html' %}
+{% extends "Todoapp/base.html" %}
+
 {% block content %}
-current
-{%endblock%}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if todo %}
+                 <h1>{{ todo.count }} Current Todo{{ todo.count|pluralize }}</h1>
+            {% else %}
+                           <h1>Current Todos</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if todo %}
+            <div class="list-group">
+                {% for curr_todo in todo %}
+                    <a href="{%url 'viewtodo' curr_todo.id %}" class="list-group-item list-group-item-actionlist-group-item-danger">{% if curr_todo.important %} <b>{{ curr_todo.title }}</b>{%else%}{{ curr_todo.title }}{% endif %}{% if curr_todo.memo %} - {{ curr_todo.memo|truncatechars:30 }}{% endif %}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you don't have any todos! Nice work.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createTodos' %}">New Todo</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

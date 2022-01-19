@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
-# Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL filespyth
 __pycache__/
 *.pot
 *.log
